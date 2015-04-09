@@ -9,7 +9,7 @@
 define('ROOT_PATH', __DIR__);
 
 # 2、引入自动加载类
-require_once ROOT_PATH . '/' . 'framework/libs/LClassLoader.php';
+require_once realpath(ROOT_PATH . '/' . 'framework/libs/ClassLoader.php');
 
 # 3、实例化WonderPHP并运行
-\framework\WonderPHP('home')::run();
+\framework\WonderPHP::app('Home')->run();

@@ -7,7 +7,7 @@
 
 namespace framework\libs;
 
-class LClassLoader
+class ClassLoader
 {
     /**
      * 载入类
@@ -16,8 +16,8 @@ class LClassLoader
      */
     public function load($className = '')
     {
-        echo $className;exit;
+        require ROOT_PATH . '/' . str_replace('\\', '/', $className) . '.php';
     }
 }
 
-spl_autoload_register(array('LClassLoader', 'load'));
+spl_autoload_register(array(new ClassLoader(), 'load'));

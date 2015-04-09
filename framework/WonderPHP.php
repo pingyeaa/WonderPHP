@@ -7,20 +7,33 @@
 
 namespace framework;
 
+use framework\libs\Config;
+use framework\libs\Registry;
+
 class WonderPHP
 {
+    private static $appName;
+
     /**
-     * 初始化
+     * 设置应用名称
      * @param string $appName 应用名称
      * @author Enoch 2015-04-09
      */
-    public function __construct($appName = 'Home')
+    static function app($appName = 'Home')
     {
-        echo $appName;
+        $obj = new self;
+        $obj::$appName = $appName;
+        return $obj;
     }
 
-    static function run()
+    /**
+     * 开始框架程序
+     * @author Enoch 2015-04-09
+     */
+    public function run()
     {
-
+        $registry = new Registry();
+        $config = new Config();
+        var_dump($config['Controller']);
     }
 }
