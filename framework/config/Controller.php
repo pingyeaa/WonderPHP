@@ -3,7 +3,7 @@
 return array(
 
     'decorator' => array(
-
-        'test'
+       // 'admin\decorator\Login',
+        'admin\decorator\Json'
     )
 );

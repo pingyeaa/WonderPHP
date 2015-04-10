@@ -12,4 +12,4 @@ define('ROOT_PATH', __DIR__);
 require_once realpath(ROOT_PATH . '/' . 'framework/libs/ClassLoader.php');
 
 # 3、实例化WonderPHP并运行
-\framework\WonderPHP::app('Home')->run();
+\framework\WonderPHP::app('admin')->run();
