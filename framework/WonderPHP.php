@@ -38,6 +38,7 @@ class WonderPHP
     {
         session_start();
         $registry = new Registry();
+        $registry::set('appName', self::$appName);
         $this->config = new Config();
         new Route($registry);
         $this->initDecorator();

@@ -14,6 +14,7 @@ class Index extends Controller
 {
     public function actionIndex()
     {
-        echo 'action success';
+        $this->assign('test', 123);
+        $this->display('Index/index.html');
     }
 }

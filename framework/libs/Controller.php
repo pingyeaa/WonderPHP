@@ -7,7 +7,7 @@
 
 namespace framework\libs;
 
-class Controller
+class Controller extends Template
 {
 
 }

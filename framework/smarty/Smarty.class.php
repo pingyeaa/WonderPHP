@@ -72,18 +72,18 @@ if (!defined('SMARTY_RESOURCE_DATE_FORMAT')) {
 /**
  * register the class autoloader
  */
-if (!defined('SMARTY_SPL_AUTOLOAD')) {
-    define('SMARTY_SPL_AUTOLOAD', 0);
-}
-
-if (SMARTY_SPL_AUTOLOAD && set_include_path(get_include_path() . PATH_SEPARATOR . SMARTY_SYSPLUGINS_DIR) !== false) {
-    $registeredAutoLoadFunctions = spl_autoload_functions();
-    if (!isset($registeredAutoLoadFunctions['spl_autoload'])) {
-        spl_autoload_register();
-    }
-} else {
-    spl_autoload_register('smartyAutoload');
-}
+//if (!defined('SMARTY_SPL_AUTOLOAD')) {
+//    define('SMARTY_SPL_AUTOLOAD', 1);
+//}
+//
+//if (SMARTY_SPL_AUTOLOAD && set_include_path(get_include_path() . PATH_SEPARATOR . SMARTY_SYSPLUGINS_DIR) !== false) {
+//    $registeredAutoLoadFunctions = spl_autoload_functions();
+//    if (!isset($registeredAutoLoadFunctions['spl_autoload'])) {
+//        spl_autoload_register();
+//    }
+//} else {
+//    spl_autoload_register('smartyAutoload');
+//}
 
 /**
  * Load always needed external class files
@@ -860,15 +860,15 @@ class Smarty extends Smarty_Internal_TemplateBase
 
             return $this;
         } elseif (is_object($security_class)) {
-            throw new SmartyException("Class '" . get_class($security_class) . "' must extend Smarty_Security.");
+            throw new \SmartyException("Class '" . get_class($security_class) . "' must extend Smarty_Security.");
         }
         if ($security_class == null) {
             $security_class = $this->security_class;
         }
         if (!class_exists($security_class)) {
-            throw new SmartyException("Security class '$security_class' is not defined");
+            throw new \SmartyException("Security class '$security_class' is not defined");
         } elseif ($security_class !== 'Smarty_Security' && !is_subclass_of($security_class, 'Smarty_Security')) {
-            throw new SmartyException("Class '$security_class' must extend Smarty_Security.");
+            throw new \SmartyException("Class '$security_class' must extend Smarty_Security.");
         } else {
             $this->security_policy = new $security_class($this);
         }
@@ -1278,7 +1278,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     public function setDebugTemplate($tpl_name)
     {
         if (!is_readable($tpl_name)) {
-            throw new SmartyException("Unknown file '{$tpl_name}'");
+            throw new \SmartyException("Unknown file '{$tpl_name}'");
         }
         $this->debug_tpl = $tpl_name;
 
@@ -1375,7 +1375,7 @@ class Smarty extends Smarty_Internal_TemplateBase
         // class name must have three parts to be valid plugin
         // count($_name_parts) < 3 === !isset($_name_parts[2])
         if (!isset($_name_parts[2]) || strtolower($_name_parts[0]) !== 'smarty') {
-            throw new SmartyException("plugin {$plugin_name} is not a valid name format");
+            throw new \SmartyException("plugin {$plugin_name} is not a valid name format");
         }
         // if type is "internal", get plugin from sysplugins
         if (strtolower($_name_parts[1]) == 'internal') {
