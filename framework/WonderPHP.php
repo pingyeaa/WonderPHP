@@ -9,6 +9,7 @@ namespace framework;
 
 use framework\libs\Config;
 use framework\libs\Registry;
+use framework\libs\Route;
 
 class WonderPHP
 {
@@ -16,7 +17,7 @@ class WonderPHP
 
     /**
      * 设置应用名称
-     * @param string $appName 应用名称
+     * @params string $appName 应用名称
      * @author Enoch 2015-04-09
      */
     static function app($appName = 'Home')
@@ -34,6 +35,7 @@ class WonderPHP
     {
         $registry = new Registry();
         $config = new Config();
-        var_dump($config['Controller']);
+        new Route($registry);
+        echo $registry::get('action');
     }
 }
