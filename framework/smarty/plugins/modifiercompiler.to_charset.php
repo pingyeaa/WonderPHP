@@ -2,25 +2,24 @@
 /**
  * Smarty plugin
  *
- * @package    Smarty
+ * @package Smarty
  * @subpackage PluginsModifierCompiler
  */
 
 /**
  * Smarty to_charset modifier plugin
+ *
  * Type:     modifier<br>
  * Name:     to_charset<br>
  * Purpose:  convert character encoding from internal encoding to $charset
  *
  * @author Rodney Rehm
- *
  * @param array $params parameters
- *
  * @return string with compiled code
  */
-function smarty_modifiercompiler_to_charset($params)
+function smarty_modifiercompiler_to_charset($params, $compiler)
 {
-    if (!Smarty::$_MBSTRING) {
+    if (!SMARTY_MBSTRING /* ^phpunit */&&empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
         // FIXME: (rodneyrehm) shouldn't this throw an error?
         return $params[0];
     }
@@ -29,5 +28,7 @@ function smarty_modifiercompiler_to_charset($params)
         $params[1] = '"ISO-8859-1"';
     }
 
-    return 'mb_convert_encoding(' . $params[0] . ', ' . $params[1] . ', "' . addslashes(Smarty::$_CHARSET) . '")';
+    return 'mb_convert_encoding(' . $params[0] . ', ' . $params[1] . ', SMARTY_RESOURCE_CHAR_SET)';
 }
+
+?>

@@ -16,6 +16,10 @@ class ClassLoader
      */
     public function load($className = '')
     {
+        if(strpos($className, 'Smarty'))
+        {
+            echo ROOT_PATH . '/' . str_replace('\\', '/', $className) . '.php';
+        }
         require ROOT_PATH . '/' . str_replace('\\', '/', $className) . '.php';
     }
 }

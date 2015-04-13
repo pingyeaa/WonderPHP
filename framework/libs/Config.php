@@ -21,7 +21,7 @@ class Config implements \ArrayAccess
     {
         if(!isset($this->config[$offset]))
         {
-            $this->config[$offset] = require ROOT_PATH . '/framework/config/' . ucfirst(strtolower($offset)) . '.php';
+            $this->config[$offset] = require ROOT_PATH . '/framework/config/' . strtolower(Registry::get('appName')) . '/' . ucfirst(strtolower($offset)) . '.php';
         }
         return $this->config[$offset];
     }

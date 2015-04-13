@@ -80,8 +80,8 @@ class WonderPHP
      */
     private function initDecorator()
     {
-        if(!isset($this->config['Controller']['decorator'])) { return; }
-        foreach ($this->config['Controller']['decorator'] as $v)
+        if(!isset($this->config['config']['decorator'])) { return; }
+        foreach ($this->config['config']['decorator'] as $v)
         {
             $this->decoratorArray[] = new $v;
         }
