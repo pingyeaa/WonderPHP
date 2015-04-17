@@ -83,11 +83,18 @@ class Model
             return false;
         }
         $data = $this->filter($data);
-        $keys = implode(',', array_keys($data));
-        $values = implode(',', array_values($data));
+        $keys = '';
+        $values = '';
+        foreach($data as $k => $v)
+        {
+            $keys .= "`" . $k . "`,";
+            $values .= "`" . $v . "`,";
+        }
+        $keys = substr($keys, 0, -1);
+        $values = substr($values, 0, -1);
         $sql = "insert into {$this->table} ({$keys}) values ({$values}) ";
-        echo $sql;exit;
         return $this->handle->execute($sql);
+        
     }
 
     /**
