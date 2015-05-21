@@ -22,10 +22,11 @@ class Index extends Controller
     {
         $admin = new Admin();
         //$result = $admin->find(array('id' => "2"));
-        $result = $admin->insert(array('id' => 3, 'user_name' => 'muki'));
+        $result = $admin->insert(array('user_name' => 'muki1'));
         var_dump($result);exit;
 //        echo $this->config['config']['templateSuffix'];
 //        $this->assign('test', 123);
 //        $this->display();
+        phpinfo();
     }
 }

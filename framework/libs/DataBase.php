@@ -13,4 +13,5 @@ interface DataBase
     public function query();
     public function close();
     public function execute();
+    public function getLastId();
 }

@@ -60,6 +60,15 @@ class MySql implements DataBase
     }
 
     /**
+     * 获取插入id
+     * @author Enoch 2015-05-17
+     */
+    public function getLastId()
+    {
+        return mysql_insert_id();
+    }
+
+    /**
      * 获取实例
      * @author Enoch 2015-04-11
      */

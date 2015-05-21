@@ -93,8 +93,12 @@ class Model
         $keys = substr($keys, 0, -1);
         $values = substr($values, 0, -1);
         $sql = "insert into {$this->table} ({$keys}) values ({$values}) ";
-        return $this->handle->execute($sql);
-        
+        $is = $this->handle->execute($sql);
+        if(!$is)
+        {
+            return false;
+        }
+        return $this->handle->getLastId();
     }
 
     /**
